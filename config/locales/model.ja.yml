@@ -6,4 +6,5 @@ ja:
       admin:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード（確認用）
         remember_me: ログインを記憶する

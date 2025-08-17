@@ -1,0 +1,23 @@
+class Admins::AccountsController < Admins::ApplicationController
+  before_action :set_admin, only: %i[edit update]
+
+  def edit; end
+
+  def update
+    if @admin.update(admin_params)
+      redirect_to admins_account_path, notice: "アカウント更新しました"
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def admin_params
+    params.expect(admin: %i[email password password_confirmation current_password])
+  end
+
+  def set_admin
+    @admin = current_admin
+  end
+end

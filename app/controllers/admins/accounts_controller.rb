@@ -7,7 +7,7 @@ class Admins::AccountsController < Admins::ApplicationController
     if @admin.update_with_password(admin_params)
       redirect_to admins_account_path, notice: "アカウント更新しました"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

@@ -7,11 +7,11 @@
                 input_html: { autocomplete: "email" } %>
     <%= f.input :password,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= f.input :remember_me, as: :boolean %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "ログイン" %>
+  <div class="form-actions mb-3">
+    <%= f.button :submit, "ログイン", class: "btn btn-primary" %>
   </div>
 <% end %>
 

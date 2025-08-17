@@ -1,7 +1,5 @@
 <h2>アカウント編集</h2>
-<%= simple_form_for @admin, url: admins_account_path(@admin) do |f| %>
-  <%= f.error_notification %>
-
+<%= simple_form_for @admin, url: admins_account_path do |f| %>
   <div class="form-inputs">
     <%= f.input :email, autofocus: true %>
     <%= f.input :password,
@@ -14,6 +12,6 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
   <div class="form-actions">
-    <%= f.button :submit, "更新" %>
+    <%= f.button :submit, "更新", class: "btn btn-primary" %>
   </div>
 <% end %>

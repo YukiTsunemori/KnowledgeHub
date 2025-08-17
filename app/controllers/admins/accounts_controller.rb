@@ -4,17 +4,17 @@ class Admins::AccountsController < Admins::ApplicationController
   def edit; end
 
   def update
-    if @admin.update(admin_params)
+    if @admin.update_with_password(admin_params)
       redirect_to admins_account_path, notice: "アカウント更新しました"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   private
 
   def admin_params
-    params.expect(admin: %i[email password password_confirmation current_password])
+    params.expect(admin: %i[email password password_confirmation])
   end
 
   def set_admin

@@ -14,7 +14,7 @@ class Admins::AccountsController < Admins::ApplicationController
   private
 
   def admin_params
-    params.expect(admin: %i[email password password_confirmation])
+    params.expect(admin: %i[email password password_confirmation current_password])
   end
 
   def set_admin

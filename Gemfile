@@ -17,6 +17,7 @@ gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
 gem "simple_form"
+gem "devise"
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
@@ -24,6 +25,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "letter_opener"
   gem "web-console"
 end
 

@@ -1,0 +1,14 @@
+.session-container {
+  display: flex;
+  justify-content: center;
+}
+
+.session-container > .session-box {
+  width: 500px;
+  padding: 24px;
+}
+
+.session-title {
+  font-weight: bold;
+  font-size: 24px;
+}

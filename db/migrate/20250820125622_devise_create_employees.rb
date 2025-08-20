@@ -4,7 +4,7 @@ class DeviseCreateEmployees < ActiveRecord::Migration[8.0]
   def change
     create_table :employees do |t|
       ## Database authenticatable
-      t.string :name,               null: false, defaule: ""
+      t.string :name,               null: false, default: ""
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 

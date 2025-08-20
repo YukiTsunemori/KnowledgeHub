@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admins do
     root to: "home#index"
     resource :account, only: %i[edit update]
-    resources :emploees
+    resources :employees
   end
   get "up" => "rails/health#show", as: :rails_health_check
 end

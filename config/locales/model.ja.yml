@@ -9,3 +9,10 @@ ja:
         password_confirmation: パスワード（確認用）
         current_password: 現在のパスワード
         remember_me: ログインを記憶する
+      employee:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        current_password: 現在のパスワード
+        remember_me: ログインを記憶する

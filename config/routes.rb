@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get "room_lists/index"
-  get "room_lists/new"
-  get "room_lists/show"
+  get "configurations/index", to: "configurations#index"
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords"}
 
   namespace :admins do
     root to: "home#index"
     resource :account, only: %i[edit update]
   end
-  get "up" => "rails/health#show", as: :rails_health_check
+    resource :room_categories
+    resource :amenity_groups
+    resource :room_lists
 end

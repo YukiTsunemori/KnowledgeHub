@@ -1,0 +1,10 @@
+<%= simple_form_for @room_category do |f| %>
+    <%= f.input :name, label: 'カテゴリーネーム' %>
+    <%= f.button :submit %>
+<% end %>
+
+<ol>
+    <% @all.each do |category| %>
+           <li><%= category.name %></li>
+    <% end %>
+</ol>

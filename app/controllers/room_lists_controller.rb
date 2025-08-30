@@ -1,16 +1,11 @@
 class RoomListsController < ApplicationController
-  def index
-  end
-
   def new
     @categories = RoomCategory.all
     @amenities = AmenityGroup.all
-    # binding.irb
     @room = RoomList.new
   end
 
   def create
-    # bindig.irb
     @room = RoomList.new(room_list_parameter)
     if @room.save
       redirect_to new_room_lists_path, notice: 'ルーム情報は無事作成されました。'

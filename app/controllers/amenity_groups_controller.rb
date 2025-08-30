@@ -1,7 +1,4 @@
 class AmenityGroupsController < ApplicationController
-  def index
-  end
-
   def new
     @group_all = AmenityGroup.all
     @amenity_group = AmenityGroup.new

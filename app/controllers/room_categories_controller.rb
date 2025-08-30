@@ -1,7 +1,4 @@
 class RoomCategoriesController < ApplicationController
-  def index
-  end
-
   def new
     @category_all = RoomCategory.all
     @room_category = RoomCategory.new

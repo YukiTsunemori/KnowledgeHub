@@ -1,7 +1,12 @@
 class Admins::EmployeesController < Admins::ApplicationController
-  before_action :set_employee, only: %i[show]
+  before_action :set_employee, only: %i[show destroy]
 
-  def show; end
+  def index
+    @employees = Employee.default_order
+  end
+
+  def show
+  end
 
   def new
     @employee = Employee.new
@@ -15,6 +20,11 @@ class Admins::EmployeesController < Admins::ApplicationController
     else
       render :new, status: :unprocessable_content
     end
+  end
+
+  def destroy
+    @employee.destroy
+    redirect_to admins_employees_path, status: :see_other, notice: "従業員アカウントを削除しました"
   end
 
   private

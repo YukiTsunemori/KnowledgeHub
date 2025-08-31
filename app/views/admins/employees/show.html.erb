@@ -1,0 +1,11 @@
+<div class="show-container">
+  <div class="show-box">
+    <h2 class="show-title">従業員詳細</h2>
+    <div class="show-item"><%= @employee.name %></div>
+    <div class="show-item"><%= @employee.email %></div>
+    <div class="show-actions">
+      <%= link_to '編集', edit_admins_employee_path(@employee), class: "btn btn-primary" %>
+      <%= button_to '削除', admins_employee_path(@employee), method: :delete, data: { turbo_confirm: "従業員アカウントを削除してもよろしいですか" }, class: "btn btn-link text-secondary" %>
+    </div>
+  </div>
+</div>

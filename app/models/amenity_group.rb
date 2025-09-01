@@ -1,0 +1,2 @@
+class AmenityGroup < ApplicationRecord
+end

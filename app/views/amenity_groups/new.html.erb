@@ -1,0 +1,11 @@
+<%= simple_form_for @amenity_group do |f| %>
+    <%= f.input :name, label: 'グループネーム' %>
+    <%= f.input :content, label: '内容' %>
+    <%= f.button :submit %>
+<% end %>
+
+<ol>
+    <% @group_all.each do |group| %>
+           <li><%= group.name %></li>
+    <% end %>
+</ol>

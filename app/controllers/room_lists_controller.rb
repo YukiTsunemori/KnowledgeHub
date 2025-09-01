@@ -10,7 +10,7 @@ class RoomListsController < ApplicationController
     if @room.save
       redirect_to new_room_lists_path, notice: 'ルーム情報は無事作成されました。'
     else
-      render :new, flash.now[:notice]
+      render :new, status: :unprocessable_content
     end
   end
 

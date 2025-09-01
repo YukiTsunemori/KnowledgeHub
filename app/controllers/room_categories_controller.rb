@@ -11,7 +11,7 @@ class RoomCategoriesController < ApplicationController
     if @room_category.save
       redirect_to new_room_categories_path, notice: "ルームカテゴリーは無事作成されました。"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

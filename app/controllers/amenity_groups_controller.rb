@@ -11,7 +11,7 @@ class AmenityGroupsController < ApplicationController
     if @amenity_group.save
       redirect_to new_amenity_groups_path, notice: "アメニティーグループは無事作成されました。"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

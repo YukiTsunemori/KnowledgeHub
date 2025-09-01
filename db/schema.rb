@@ -1,6 +1,7 @@
-ActiveRecord::Schema[8.0].define(version: 2025_08_28_091232) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_30_004433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "vector"
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -44,4 +45,85 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_28_091232) do
 
   add_foreign_key "room_lists", "amenity_groups"
   add_foreign_key "room_lists", "room_categories"
+
+  create_table "amenity_groups", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chat_bots", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "admin_id", null: false
+    t.index ["admin_id"], name: "index_chat_bots_on_admin_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.vector "embedding", limit: 1536
+    t.string "title"
+    t.text "content"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.string "role"
+    t.text "content"
+    t.string "model_id"
+    t.integer "input_tokens"
+    t.integer "output_tokens"
+    t.bigint "tool_call_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["tool_call_id"], name: "index_messages_on_tool_call_id"
+  end
+
+  create_table "room_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "room_lists", force: :cascade do |t|
+    t.string "room_type_name"
+    t.integer "square_meters"
+    t.integer "capacity"
+    t.string "bed_type"
+    t.integer "bed_quantity"
+    t.boolean "htwn"
+    t.bigint "room_category_id", null: false
+    t.bigint "amenity_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_group_id"], name: "index_room_lists_on_amenity_group_id"
+    t.index ["room_category_id"], name: "index_room_lists_on_room_category_id"
+  end
+
+  create_table "tool_calls", force: :cascade do |t|
+    t.bigint "message_id", null: false
+    t.string "tool_call_id", null: false
+    t.string "name", null: false
+    t.jsonb "arguments", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_tool_calls_on_message_id"
+    t.index ["tool_call_id"], name: "index_tool_calls_on_tool_call_id"
+  end
+
+  add_foreign_key "chat_bots", "admins"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "room_lists", "amenity_groups"
+  add_foreign_key "room_lists", "room_categories"
+  add_foreign_key "tool_calls", "messages"
 end

@@ -18,6 +18,9 @@ gem "kamal", require: false
 gem "thruster", require: false
 gem "simple_form"
 gem "devise"
+gem 'ruby_llm', '~> 1.6', '>= 1.6.4'
+gem "pgvector"
+gem "neighbor"
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false

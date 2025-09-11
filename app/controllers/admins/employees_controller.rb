@@ -1,5 +1,5 @@
 class Admins::EmployeesController < Admins::ApplicationController
-  before_action :set_employee, only: %i[show destroy]
+  before_action :set_employee, only: %i[show edit update destroy]
 
   def index
     @employees = Employee.default_order
@@ -12,6 +12,9 @@ class Admins::EmployeesController < Admins::ApplicationController
     @employee = Employee.new
   end
 
+  def edit
+  end
+
   def create
     @employee = Employee.new(employee_params)
 
@@ -19,6 +22,14 @@ class Admins::EmployeesController < Admins::ApplicationController
       redirect_to admins_employee_path(@employee), notice: "従業員アカウントを登録しました"
     else
       render :new, status: :unprocessable_content
+    end
+  end
+
+  def update
+    if @employee.update(employee_params)
+      redirect_to admins_employee_path(@employee), notice: "従業員アカウントを更新しました"
+    else
+      render :edit, status: :unprocessable_content
     end
   end
 

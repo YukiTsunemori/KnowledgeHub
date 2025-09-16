@@ -1,7 +1,10 @@
 <%= simple_form_for @amenity_group do |f| %>
     <%= f.input :name, label: 'グループネーム' %>
     <%= f.input :content, label: '内容' %>
-    <%= f.button :submit %>
+    <div class="d-flex justify-content-start gap-2 mt-3">
+      <%= f.submit '送信', class: 'btn btn-primary' %>
+      <%= link_to 'キャンセル', configurations_index_path, class: 'btn btn-danger' %>
+    </div>
 <% end %>
 
 <ol>

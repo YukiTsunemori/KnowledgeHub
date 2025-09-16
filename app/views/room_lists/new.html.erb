@@ -5,7 +5,14 @@
     <%= f.input :bed_type, label: 'ベッドタイプ', placeholder: 'ツイン or キング etc..' %>
     <%= f.input :bed_quantity, label: '客室総数' %>
     <%= f.input :htwn, label: 'ハリウッドツイン仕様' %>
-    <%= f.collection_select :room_category_id, @categories, :id, :name, label: 'ルームカテゴリー' %>
-    <%= f.collection_select :amenity_group_id, @amenities, :id, :name, label: 'アメニティーグループ' %>
-    <%= f.submit '送信'%>
+    <div>
+        <%= f.collection_select :room_category_id, @categories, :id, :name, label: 'ルームカテゴリー' %>
+    </div>
+    <div>
+        <%= f.collection_select :amenity_group_id, @amenities, :id, :name, label: 'アメニティーグループ' %>
+    </div>
+    <div class="d-flex justify-content-start gap-2 mt-3">
+      <%= f.submit '送信', class: 'btn btn-primary' %>
+      <%= link_to 'キャンセル', configurations_index_path, class: 'btn btn-danger' %>
+    </div>
 <% end %>

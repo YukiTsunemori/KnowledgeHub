@@ -1,0 +1,9 @@
+  <div id="message_<%= message.id %>" data-messages-target="message">
+    <div>
+      <span><%= message.role %>:</span>
+      <span><%= message.created_at.strftime('%H:%M:%S') %></span>
+    </div>
+    <div id="message_<%= message.id %>_content">
+      <%= simple_format(message.content) %>
+    </div>
+  </div>

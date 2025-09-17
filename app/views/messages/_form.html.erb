@@ -1,0 +1,7 @@
+  <div class="chat-footer">
+      <%= simple_form_for([@chat, Message.new]) do |f| %>
+        <%= f.input :content, label: false, placeholder: "Type your message..." %>
+        <%= f.submit "Send", class: "btn btn-primary", data: { turbo_frame: 'conversation-log' } %>
+      <% end %>
+  </div>
+</div>

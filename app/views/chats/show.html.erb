@@ -1,0 +1,23 @@
+<div data-controller="messages" data-chat-id="<%= @chat.id %>">
+  <%= turbo_stream_from "chat_#{@chat.id}" %>
+    <div>
+      <h1>Chat #<%= @chat.id %></h1>
+      <div> Created: <%= @chat.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+    </div>
+
+    <%= turbo_frame_tag "conversation-log" do %>
+      <% if @chat.messages.present? %>
+        <%= render @chat.messages %>
+      <% else %>
+        <p>No messages yet.</p>
+      <% end %>
+    <% end %>
+
+  <div>
+    <%= render "messages/form", chat: @chat, message: @chat.messages.new %>
+  </div>
+
+  <div>
+    <%= link_to 'Back to Chats', chats_path %>
+  </div>
+</div>

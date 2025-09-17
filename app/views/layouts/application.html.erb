@@ -25,6 +25,10 @@
   <body>
     <%= render "layouts/header/header" %>
     <div class="container pt-5">
+      <div class="mb-2 text-muted small">
+      コントローラ: <%= controller.controller_name %> /
+      アクション: <%= controller.action_name %>
+      </div>
       <%= render "layouts/flash" %>
       <%= yield %>
     </div>

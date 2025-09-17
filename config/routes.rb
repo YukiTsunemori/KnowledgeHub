@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "facilities/new"
+  get "facilities/show"
   devise_for :employees
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords" }
   get "configurations/index", to: "configurations#index"
@@ -12,4 +14,5 @@ Rails.application.routes.draw do
     resource :room_categories
     resource :amenity_groups
     resource :room_lists
+    resource :facilities
 end

@@ -1,0 +1,33 @@
+<div class="container py-4" style="max-width: 500px;">
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      施設新規作成
+    </div>
+    <div class="card-body">
+      <%= simple_form_for @facilities do |f| %>
+        <%= f.input :name, label: '施設名' %>
+        <%= f.input :open_time, label: 'オープン' %>
+        <%= f.input :close_time, label: 'クローズ' %>
+        <%= f.input :note, label: '備考' %>
+        <div class="d-flex justify-content-end mt-3">
+          <%= f.submit '送信', class: 'btn btn-primary' %>
+          <%= link_to 'キャンセル', configurations_index_path, class: 'btn btn-danger ms-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header bg-light">
+      登録済み施設一覧
+    </div>
+    <div class="card-body p-0">
+      <ol class="list-group list-group-numbered mb-0">
+        <% @facility_all&.each do |facility| %>
+          <li class="list-group-item"><%= facility.name %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>
+

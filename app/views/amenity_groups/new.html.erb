@@ -1,11 +1,30 @@
-<%= simple_form_for @amenity_group do |f| %>
-    <%= f.input :name, label: 'グループネーム' %>
-    <%= f.input :content, label: '内容' %>
-    <%= f.button :submit %>
-<% end %>
+<div class="container py-4" style="max-width: 500px;">
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      アメニティグループ新規作成
+    </div>
+    <div class="card-body">
+      <%= simple_form_for @amenity_group do |f| %>
+        <%= f.input :name, label: 'グループネーム' %>
+        <%= f.input :content, label: '内容' %>
+        <div class="d-flex justify-content-end mt-3">
+          <%= f.button :submit, '追加', class: 'btn btn-primary' %>
+          <%= link_to '戻る', configurations_index_path, class: 'btn btn-danger ms-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<ol>
-    <% @group_all.each do |group| %>
-           <li><%= group.name %></li>
-    <% end %>
-</ol>
+  <div class="card">
+    <div class="card-header bg-light">
+      登録済みグループ一覧
+    </div>
+    <div class="card-body p-0">
+      <ol class="list-group list-group-numbered mb-0">
+        <% @group_all&.each do |group| %>
+          <li class="list-group-item"><%= group.name %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div>

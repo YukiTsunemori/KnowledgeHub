@@ -1,0 +1,11 @@
+<%= simple_form_for @room do |f| %>
+    <%= f.input :room_type_name, label: 'ルームタイプ名' %>
+    <%= f.input :square_meters, label: '部屋の面積' %>
+    <%= f.input :capacity, label: '最大収容人数' %>
+    <%= f.input :bed_type, label: 'ベッドタイプ', placeholder: 'ツイン or キング etc..' %>
+    <%= f.input :bed_quantity, label: '客室総数' %>
+    <%= f.input :htwn, label: 'ハリウッドツイン仕様' %>
+    <%= f.collection_select :room_category_id, @categories, :id, :name, label: 'ルームカテゴリー' %>
+    <%= f.collection_select :amenity_group_id, @amenities, :id, :name, label: 'アメニティーグループ' %>
+    <%= f.submit '送信'%>
+<% end %>

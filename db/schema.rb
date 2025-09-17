@@ -1,4 +1,16 @@
-ActiveRecord::Schema[8.0].define(version: 2025_08_30_004433) do
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema[8.0].define(version: 2025_09_17_084532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -22,37 +34,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_30_004433) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "room_categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "room_lists", force: :cascade do |t|
-    t.string "room_type_name"
-    t.integer "square_meters"
-    t.integer "capacity"
-    t.string "bed_type"
-    t.integer "bed_quantity"
-    t.boolean "htwn"
-    t.bigint "room_category_id", null: false
-    t.bigint "amenity_group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["amenity_group_id"], name: "index_room_lists_on_amenity_group_id"
-    t.index ["room_category_id"], name: "index_room_lists_on_room_category_id"
-  end
-
-  add_foreign_key "room_lists", "amenity_groups"
-  add_foreign_key "room_lists", "room_categories"
-
-  create_table "amenity_groups", force: :cascade do |t|
-    t.string "name"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "chat_bots", force: :cascade do |t|
     t.string "text"
     t.datetime "created_at", null: false
@@ -65,9 +46,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_30_004433) do
     t.string "model_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
-  create_table "documents", force: :cascade do |t|
+  create_table "facilities", force: :cascade do |t|
+    t.string "name"
+    t.time "close_time"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time "open_time"
+  end
+
+  create_table "knowledge_chunks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.vector "embedding", limit: 1536
@@ -110,6 +103,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_30_004433) do
     t.index ["room_category_id"], name: "index_room_lists_on_room_category_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "tool_calls", force: :cascade do |t|
     t.bigint "message_id", null: false
     t.string "tool_call_id", null: false
@@ -121,9 +123,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_30_004433) do
     t.index ["tool_call_id"], name: "index_tool_calls_on_tool_call_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
   add_foreign_key "chat_bots", "admins"
+  add_foreign_key "chats", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "room_lists", "amenity_groups"
   add_foreign_key "room_lists", "room_categories"
+  add_foreign_key "sessions", "users"
   add_foreign_key "tool_calls", "messages"
 end

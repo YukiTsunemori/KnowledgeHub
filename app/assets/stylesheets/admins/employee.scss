@@ -1,0 +1,31 @@
+.show-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-box {
+  width: 60%;
+  background-color: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  min-width: 340px;
+}
+
+.show-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.show-item {
+  margin: 1rem 0;
+}
+
+.show-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}

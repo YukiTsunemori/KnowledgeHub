@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import ChatbotsController from "./chatbots_controller"
+application.register("chatbots", ChatbotsController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import MessagesController from "./messages_controller"
+application.register("messages", MessagesController)

@@ -1,0 +1,23 @@
+<div>
+  <h1>Knowledge Hub Index</h1>
+
+  <% if @chats.nil? %>
+    <p>No chats found. Create a new chat.</p>
+  <% else %>
+    <div>
+      <% @chats.each do |chat| %>
+        <div>
+          <span>ID: <%= chat.id %></span>
+          <span><%= chat.created_at.strftime('%Y-%m-%d %H:%M:%S') %></span>
+          <span>
+            <%= link_to 'View', chat_path(chat) %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= button_to 'New Chat', chats_path, data: { turbo_method: :post } %>
+  </div>
+</div>

@@ -30,6 +30,8 @@
       アクション: <%= controller.action_name %>
       </div>
       <%= render "layouts/flash" %>
+      <%= "現在のコントローラ: #{controller_name}" %>
+      <%= "現在のアクション: #{action_name}" %>
       <%= yield %>
     </div>
   </body>

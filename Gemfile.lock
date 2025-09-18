@@ -221,12 +221,12 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.1)
-    pg (1.6.1-aarch64-linux)
-    pg (1.6.1-aarch64-linux-musl)
-    pg (1.6.1-arm64-darwin)
-    pg (1.6.1-x86_64-linux)
-    pg (1.6.1-x86_64-linux-musl)
+    pg (1.6.2)
+    pg (1.6.2-aarch64-linux)
+    pg (1.6.2-aarch64-linux-musl)
+    pg (1.6.2-arm64-darwin)
+    pg (1.6.2-x86_64-linux)
+    pg (1.6.2-x86_64-linux-musl)
     pgvector (0.3.2)
     pp (0.6.2)
       prettyprint
@@ -240,7 +240,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (6.6.1)
+    puma (7.0.2)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
@@ -423,7 +423,7 @@ DEPENDENCIES
   kamal
   letter_opener
   neighbor
-  pg (~> 1.1)
+  pg (~> 1.6)
   pgvector
   propshaft
   puma (>= 5.0)

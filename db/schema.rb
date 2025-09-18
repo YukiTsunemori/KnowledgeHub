@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_080829) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_17_084532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -46,6 +46,36 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080829) do
     t.string "model_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["confirmation_token"], name: "index_employees_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_employees_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+  end
+
+  create_table "facilities", force: :cascade do |t|
+    t.string "name"
+    t.time "close_time"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time "open_time"
   end
 
   create_table "knowledge_chunks", force: :cascade do |t|
@@ -91,6 +121,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080829) do
     t.index ["room_category_id"], name: "index_room_lists_on_room_category_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "tool_calls", force: :cascade do |t|
     t.bigint "message_id", null: false
     t.string "tool_call_id", null: false
@@ -102,9 +141,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080829) do
     t.index ["tool_call_id"], name: "index_tool_calls_on_tool_call_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
   add_foreign_key "chat_bots", "admins"
+  add_foreign_key "chats", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "room_lists", "amenity_groups"
   add_foreign_key "room_lists", "room_categories"
+  add_foreign_key "sessions", "users"
   add_foreign_key "tool_calls", "messages"
 end

@@ -7,6 +7,9 @@
           <%= link_to "アカウント設定", edit_admins_account_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
+          <%= link_to "従業員一覧", admins_employees_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
           <%= button_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link", data: { turbo_confirm: '管理者画面からログアウトしますか？' } %>
         </li>
       </ul>

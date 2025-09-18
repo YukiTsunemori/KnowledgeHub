@@ -17,7 +17,7 @@ class RagService
     chat.ask(prompt) do |chunk|
       if thinking && chunk.content.present?
         thinking = false
-        Turbo::StreamsChanel.broadcast_append_to(
+        Turbo::StreamsChannel.broadcast_append_to(
           "chat_#{chat.id}",
           target: "conversation-log",
           partial: "messages/message",

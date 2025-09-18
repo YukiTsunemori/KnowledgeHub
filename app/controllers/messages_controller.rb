@@ -1,14 +1,15 @@
 class MessagesController < ApplicationController
   def create
     @chat = find_chat
-    GenerateAiResponseJob.perform_later(@chat.id, params[:message][:content])
+    # GenerateAiResponseJob.perform_later(@chat.id, params[:message][:content])
+    RagService.answer(@chat.id, params[:message][:content])
     redirect_to @chat
   end
 
   private
 
   def find_chat
-    Current.user.chats.find(params[:chat_id])
+    current_employee.chats.find(params[:chat_id])
   end
 
   def message_params

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get "configurations/index", to: "configurations#index"
   devise_for :employees
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords" }
-  
 
   namespace :admins do
     root to: "home#index"

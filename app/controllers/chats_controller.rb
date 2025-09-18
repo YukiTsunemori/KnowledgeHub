@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  before_action :authenticate_employee!
   def index
     @chats = chat_scope
   end
@@ -18,9 +19,8 @@ class ChatsController < ApplicationController
     @chat = chat_scope.find(params[:id])
   end
 
-  # private
-  # def chat_scope
-  #   Current.user.chats
-  # end
-  # ユーザーと紐づける際のメソッド
+  private
+  def chat_scope
+    current_employee.chats
+  end
 end

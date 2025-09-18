@@ -1,24 +1,35 @@
 class RagService
-  def self.answer(query)
-    # 類似チャンク検索
-    chunks = VectorSearch.search_by_similarity(query, limit: 5)
+  def self.answer(chat_id, query)
+    chat = Chat.find(chat_id)
+    thinking = true
 
-    # コンテキスト生成
+    chunks = VectorSearch.search_by_similarity(query, limit: 5)
     context = chunks.map(&:content).join("\n---\n")
     prompt = <<~PROMPT
       以下のホテル情報を参考にして、ユーザーの質問に答えてください。
       コンテキスト:
       #{context}
 
-      質問:
+      ユーザーの質問:
       #{query}
     PROMPT
 
-    # chat.ask を使って質問→回答
-    chat = RubyLLM.chat
-    response = chat.ask(prompt)
+    chat.ask(prompt) do |chunk|
+      if thinking && chunk.content.present?
+        thinking = false
+        Turbo::StreamsChanel.broadcast_append_to(
+          "chat_#{chat.id}",
+          target: "conversation-log",
+          partial: "messages/message",
+          locals: { message: chat.messages.last }
+        )
+      end
 
-    # AIからの回答テキストを返す
-    puts response.content
+      Turbo::StreamsChannel.broadcast_append_to(
+        "chat_#{chat.id}",
+        target: "message_#{chat.messages.last.id}_content",
+        html: chunk.content
+      )
+    end
   end
 end

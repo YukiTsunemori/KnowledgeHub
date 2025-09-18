@@ -28,7 +28,7 @@ class RagService
       Turbo::StreamsChannel.broadcast_append_to(
         "chat_#{chat.id}",
         target: "message_#{chat.messages.last.id}_content",
-        html: chunk.content
+        html: ActionController::Base.helpers.simple_format(chunk.content)
       )
     end
   end

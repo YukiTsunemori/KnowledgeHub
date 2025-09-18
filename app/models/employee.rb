@@ -3,4 +3,5 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   scope :default_order, -> { order(updated_at: :desc) }
+  has_many :chats, dependent: :destroy
 end

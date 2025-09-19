@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :room_categories
   resources :amenity_groups
   resources :room_lists
-  resources :facilities
+  resources :facilities, only: %i[new create]
 
   resources :chats, only: [ :index, :new, :create, :show ] do
   resources :messages, only: [ :create ]

@@ -4,7 +4,7 @@
       施設新規作成
     </div>
     <div class="card-body">
-      <%= simple_form_for @facilities do |f| %>
+      <%= simple_form_for @facility do |f| %>
         <%= f.input :name, label: '施設名' %>
         <%= f.input :open_time, label: 'オープン' %>
         <%= f.input :close_time, label: 'クローズ' %>
@@ -23,7 +23,7 @@
     </div>
     <div class="card-body p-0">
       <ol class="list-group list-group-numbered mb-0">
-        <% @facility_all&.each do |facility| %>
+        <% @facilities&.each do |facility| %>
           <li class="list-group-item"><%= facility.name %></li>
         <% end %>
       </ol>

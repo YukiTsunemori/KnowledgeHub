@@ -16,3 +16,8 @@ ja:
         password_confirmation: パスワード（確認用）
         current_password: 現在のパスワード
         remember_me: ログインを記憶する
+      facility:
+        name: 施設名
+        open_time: オープン
+        close_time: クローズ
+        note: 備考

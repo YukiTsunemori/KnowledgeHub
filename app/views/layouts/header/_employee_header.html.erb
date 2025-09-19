@@ -1,0 +1,13 @@
+<nav class="navbar public-header" data-bs-theme="dark">
+  <div class="container-fluid">
+    <%= link_to "Kwonledge Hub", employees_root_path, class: "navbar-brand" %>
+    <div class="d-flex justify-content-around">
+      <ul class="navbar-nav d-flex flex-row align-items-center gap-3">
+        </li>
+        <li class="nav-item">
+          <%= button_to "ログアウト", destroy_employee_session_path, method: :delete, class: "nav-link", data: { turbo_confirm: '従業員画面からログアウトしますか？' } %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

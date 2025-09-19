@@ -6,7 +6,7 @@ class AmenityGroupsController < ApplicationController
 
   def create
     @amenity_group = AmenityGroup.new(amenity_group_params)
-    @group_all = AmenityGroup.all
+    @group_all = AmenityGroup.default_order
 
     if @amenity_group.save
       EmbeddingService.create_for_amenitygroups(@amenity_group)

@@ -1,7 +1,7 @@
 class ChatsController < ApplicationController
   before_action :authenticate_employee!
   def index
-    @chats = chat_scope
+    @chats = chat_scope.order(id: :desc)
   end
 
   def create
@@ -11,7 +11,6 @@ class ChatsController < ApplicationController
       redirect_to @chat
     else
       render :index, status: :unprocessable_entity
-
     end
   end
 
@@ -20,6 +19,7 @@ class ChatsController < ApplicationController
   end
 
   private
+
   def chat_scope
     current_employee.chats
   end

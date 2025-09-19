@@ -16,3 +16,22 @@ ja:
         password_confirmation: パスワード（確認用）
         current_password: 現在のパスワード
         remember_me: ログインを記憶する
+      facility:
+        name: 施設名
+        open_time: オープン
+        close_time: クローズ
+        note: 備考
+      amenity_group:
+        name: アメニティグループ
+        content: 内容
+      room_list:
+        room_type_name: ルームタイプ名
+        square_meters: 部屋の面積
+        capacity: 最大収容人数
+        bed_type: ベッドタイプ
+        bed_quantity: 客室総数
+        htwn: ハリウッドツイン仕様
+        room_category: ルームカテゴリー
+        amenity_group: アメニティーグループ
+      room_category:
+        name: カテゴリ

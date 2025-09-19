@@ -1,23 +1,21 @@
 <div>
-  <h1>Knowledge Hub Index</h1>
-
-  <% if @chats.nil? %>
-    <p>No chats found. Create a new chat.</p>
-  <% else %>
+  <% if @chats.present? %>
     <div>
       <% @chats.each do |chat| %>
         <div>
           <span>ID: <%= chat.id %></span>
-          <span><%= chat.created_at.strftime('%Y-%m-%d %H:%M:%S') %></span>
+          <span><%= l chat.created_at, format: :long %></span>
           <span>
             <%= link_to 'View', chat_path(chat) %>
           </span>
         </div>
       <% end %>
     </div>
+  <% else %>
+    <p>はじめてのチャットを開始しましょう</p>
   <% end %>
 
   <div>
-    <%= button_to 'New Chat', chats_path, data: { turbo_method: :post } %>
+    <%= button_to '新しいチャットを開始', chats_path, data: { turbo_method: :post }, class: 'btn btn-primary' %>
   </div>
 </div>

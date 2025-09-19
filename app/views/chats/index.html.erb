@@ -6,7 +6,7 @@
           <span>ID: <%= chat.id %></span>
           <span><%= l chat.created_at, format: :long %></span>
           <span>
-            <%= link_to 'View', chat_path(chat) %>
+            <%= link_to 'チャットを開く', chat_path(chat) %>
           </span>
         </div>
       <% end %>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :employees do
     root to: "configurations#index"
+    resources :configurations, only: %i[index]
   end
   resources :room_categories
   resources :amenity_groups

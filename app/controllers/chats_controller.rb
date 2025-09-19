@@ -11,7 +11,6 @@ class ChatsController < ApplicationController
       redirect_to @chat
     else
       render :index, status: :unprocessable_entity
-
     end
   end
 

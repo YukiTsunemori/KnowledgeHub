@@ -8,7 +8,7 @@ class RoomListsController < ApplicationController
   def create
     @room = RoomList.new(room_list_parameter)
     if @room.save
-      redirect_to new_room_lists_path, notice: 'ルーム情報は無事作成されました。'
+      redirect_to new_room_list_path, notice: 'ルーム情報は無事作成されました。'
     else
       render :new, status: :unprocessable_content
     end

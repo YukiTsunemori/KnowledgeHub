@@ -21,3 +21,6 @@ ja:
         open_time: オープン
         close_time: クローズ
         note: 備考
+      amenity_group:
+        name: アメニティグループ
+        content: 内容

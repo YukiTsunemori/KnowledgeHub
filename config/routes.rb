@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :configurations, only: %i[index]
   end
   resources :room_categories
-  resources :amenity_groups
+  resources :amenity_groups, only: %i[new create edit update destroy]
   resources :room_lists
   resources :facilities, only: %i[new create]
 

@@ -9,16 +9,33 @@ class EmbeddingService
     )
   end
 
-  # def generate_embedding
-  #   return if content.blank?
-  #   puts "Generating embedding for Document #{id}..."
-  #   begin
-  #     embedding_result = RubyLLM.embed(content) # Uses default embedding model
-  #     self.embedding = embedding_result.vectors
-  #   rescue RubyLLM::Error => e
-  #     errors.add(:base, "Failed to generate embedding: #{e.message}")
-  #     # Prevent saving if embedding fails (optional, depending on requirements)
-  #     throw :abort
-  #   end
-  # end
+  def self.create_for_roomcategory(category)
+    content = ChunkGenerator.roomcategories_chunk(category)
+    embedding = RubyLLM.embed(content, dimensions: 1536).vectors
+
+    KnowledgeChunk.create!(
+      content: content,
+      embedding: embedding
+    )
+  end
+
+  def self.create_for_amenitygroups(amenity)
+    content = ChunkGenerator.amenitygroups_chunk(amenity)
+    embedding = RubyLLM.embed(content, dimensions: 1536).vectors
+
+    KnowledgeChunk.create!(
+      content: content,
+      embedding: embedding
+    )
+  end
+
+  def self.create_for_facilities(facility)
+    content = ChunkGenerator.amenitygroups_chunk(facility)
+    embedding = RubyLLM.embed(content, dimensions: 1536).vectors
+
+    KnowledgeChunk.create!(
+      content: content,
+      embedding: embedding
+    )
+  end
 end

@@ -33,3 +33,5 @@ ja:
         htwn: ハリウッドツイン仕様
         room_category: ルームカテゴリー
         amenity_group: アメニティーグループ
+      room_category:
+        name: カテゴリ

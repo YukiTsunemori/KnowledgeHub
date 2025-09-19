@@ -3,22 +3,47 @@ class RoomListsController < ApplicationController
     @categories = RoomCategory.all
     @amenities = AmenityGroup.all
     @room = RoomList.new
+    @room_lists = RoomList.all
   end
 
   def create
     @room = RoomList.new(room_list_parameter)
     if @room.save
-      redirect_to new_room_list_path, notice: 'ルーム情報は無事作成されました。'
+      EmbeddingService.create_for_roomlists(@room)
+      redirect_to new_room_list_path,
+      notice: "ルーム情報「#{@room.room_type_name}」は無事作成されました。"
     else
       render :new, status: :unprocessable_content
     end
   end
 
-  def show
+  def edit
+    @categories = RoomCategory.all
+    @amenities = AmenityGroup.all
+    @roomlist = RoomList.find(params[:id])
+  end
+
+  def update
+    @edit_room_list = RoomList.find(params[:id])
+    if @edit_room_list.update(edit_room_list_parameter)
+      redirect_to new_room_list_path, notice: "ルーム情報を更新しました。"
+    else
+      render :edit, status: :unprocessable_content
+    end
+  end
+
+  def destroy
+    @room = RoomList.find(params[:id])
+    @room.destroy
+    redirect_to new_room_list_path, notice: "ルーム情報「#{@room.room_type_name}」は無事削除されました。"
   end
 
   private
     def room_list_parameter
+      params.require(:room_list).permit(:room_type_name, :square_meters, :capacity, :bed_type, :bed_quantity, :htwn, :room_category_id, :amenity_group_id)
+    end
+
+    def edit_room_list_parameter
       params.require(:room_list).permit(:room_type_name, :square_meters, :capacity, :bed_type, :bed_quantity, :htwn, :room_category_id, :amenity_group_id)
     end
 end

@@ -1,21 +1,19 @@
 <div>
+  <div>
+    <%= button_to '新しいチャットを開始', chats_path, data: { turbo_method: :post }, class: 'btn btn-primary' %>
+  </div>
   <% if @chats.present? %>
     <div>
       <% @chats.each do |chat| %>
         <div>
-          <span>ID: <%= chat.id %></span>
-          <span><%= l chat.created_at, format: :long %></span>
-          <span>
-            <%= link_to 'チャットを開く', chat_path(chat) %>
-          </span>
+          <%= link_to chat_path(chat), class: 'text-decoration-none' do %>
+            <span><%= chat_first_message(chat) %></span>
+            <span><%= l chat.created_at, format: :long %></span>
+          <% end %>
         </div>
       <% end %>
     </div>
   <% else %>
     <p>はじめてのチャットを開始しましょう</p>
   <% end %>
-
-  <div>
-    <%= button_to '新しいチャットを開始', chats_path, data: { turbo_method: :post }, class: 'btn btn-primary' %>
-  </div>
 </div>

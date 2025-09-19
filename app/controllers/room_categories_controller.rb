@@ -9,7 +9,9 @@ class RoomCategoriesController < ApplicationController
     @category_all = RoomCategory.all
     # binding.irb
     if @room_category.save
-      redirect_to new_room_categories_path, notice: "ルームカテゴリーは無事作成されました。"
+      EmbeddingService.create_for_roomcategory(@room_category)
+      redirect_to new_room_category_path,
+      notice: "ルームカテゴリー「#{@room_category.name}」は無事作成されました。"
     else
       render :new, status: :unprocessable_content
     end

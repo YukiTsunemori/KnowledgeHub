@@ -9,17 +9,39 @@ class AmenityGroupsController < ApplicationController
     @group_all = AmenityGroup.all
 
     if @amenity_group.save
-      redirect_to new_amenity_groups_path, notice: "アメニティーグループは無事作成されました。"
+      EmbeddingService.create_for_amenitygroups(@amenity_group)
+      redirect_to new_amenity_group_path,
+      notice: "アメニティーグループ「#{@amenity_group.name}」は無事作成されました。"
     else
       render :new, status: :unprocessable_content
     end
   end
 
-  def show
+  def edit
+    @edit_amenity_group = AmenityGroup.find(params[:id])
+  end
+
+  def update
+    @edit_amenity_group = AmenityGroup.find(params[:id])
+    if @edit_amenity_group.update(edit_amenity_group_params)
+      redirect_to new_amenity_group_path, notice: "アメニティーグループを更新しました。"
+    else
+      render :edit, status: :unprocessable_content
+    end
+  end
+
+  def destroy
+    @amenity_group = AmenityGroup.find(params[:id])
+    @amenity_group.destroy
+    redirect_to new_amenity_group_path, notice: "アメニティーグループ「#{@amenity_group.name}」は無事削除されました。"
   end
 
   private
     def amenity_group_params
+      params.require(:amenity_group).permit(:name, :content)
+    end
+
+    def edit_amenity_group_params
       params.require(:amenity_group).permit(:name, :content)
     end
 end

@@ -1,9 +1,11 @@
-  <div id="message_<%= message.id %>" data-messages-target="message">
-    <div>
-      <span><%= message.role %>:</span>
-      <span><%= message.created_at.strftime('%H:%M:%S') %></span>
+<div id="message_<%= message.id %>" data-messages-target="message" class="d-flex mb-2 <%= message.role == 'user' ? 'justify-content-end' : 'justify-content-start' %>">
+  <div class="<%= message.role == 'user' ? 'bg-primary text-white' : 'bg-light' %> rounded px-3 py-2" style="max-width: 70%;">
+    <div class="small mb-1">
+      <span class="fw-bold"><%= message.role == 'user' ? 'あなた' : 'AI' %></span>
+      <span class="ms-2"><%= message.created_at.strftime('%H:%M:%S') %></span>
     </div>
     <div id="message_<%= message.id %>_content">
       <%= simple_format(message.content) %>
     </div>
   </div>
+</div>

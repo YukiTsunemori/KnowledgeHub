@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "chats#index"
-  devise_for :employees
+  devise_for :employees, controllers: { sessions: "employees/sessions" }
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords" }
 
   namespace :admins do

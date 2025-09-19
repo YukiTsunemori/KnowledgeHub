@@ -1,0 +1,19 @@
+<div class="session-container">
+  <div class="card session-box">
+    <h2 class="session-title">従業員画面ログイン</h2>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean %>
+      </div>
+      <div class="form-actions mb-3">
+        <%= f.button :submit, "ログイン", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <%= render "employees/shared/links" %>
+  </div>
+</div>

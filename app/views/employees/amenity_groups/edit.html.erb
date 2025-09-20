@@ -4,12 +4,12 @@
       ルームカテゴリ新規作成
     </div>
         <div class="card-body">
-        <%= simple_form_for @edit_amenity_group do |f| %>
+        <%= simple_form_for [:employees, @edit_amenity_group] do |f| %>
             <%= f.input :name, label: 'カテゴリーネーム' %>
             <%= f.input :content, label: '内容' %>
             <div class="d-flex justify-content-end mt-3">
             <%= f.button :submit, '更新', class: 'btn btn-primary' %>
-            <%= link_to '戻る', new_room_category_path, class: 'btn btn-outline-secondary ms-2' %>
+            <%= link_to '戻る', new_employees_amenity_group_path, class: 'btn btn-outline-secondary ms-2' %>
             </div>
         <% end %>
         </div>

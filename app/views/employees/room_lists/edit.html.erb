@@ -6,7 +6,7 @@
           ルーム情報編集
         </div>
         <div class="card-body">
-          <%= simple_form_for @roomlist do |f| %>
+          <%= simple_form_for [:employees, @roomlist] do |f| %>
             <%= f.input :room_type_name, label: 'ルームタイプ名' %>
             <%= f.input :square_meters, label: '部屋の面積' %>
             <%= f.input :capacity, label: '最大収容人数' %>

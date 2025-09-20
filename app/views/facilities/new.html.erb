@@ -4,7 +4,7 @@
       施設新規作成
     </div>
     <div class="card-body">
-      <%= simple_form_for @facility do |f| %>
+      <%= simple_form_for [:employees, @facility] do |f| %>
         <%= f.input :name, label: '施設名' %>
         <%= f.input :open_time, label: 'オープン' %>
         <%= f.input :close_time, label: 'クローズ' %>

@@ -4,6 +4,7 @@
       ルームカテゴリ新規作成
     </div>
     <div class="card-body">
+
       <%= simple_form_for [:employees, @room_category] do |f| %>
         <%= f.input :name, label: 'カテゴリーネーム' %>
         <div class="d-flex justify-content-end mt-3">

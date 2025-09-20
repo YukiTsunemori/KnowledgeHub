@@ -4,7 +4,7 @@
       アメニティグループ新規作成
     </div>
     <div class="card-body">
-      <%= simple_form_for @amenity_group do |f| %>
+      <%= simple_form_for [:employees, @amenity_group] do |f| %>
         <%= f.input :name, label: 'グループネーム' %>
         <%= f.input :content, label: '内容' %>
         <div class="d-flex justify-content-end mt-3">
@@ -24,8 +24,8 @@
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <span class="text-start w-100"><%= amenity.name %></span>
             <div class="d-flex gap-2 ms-2 flex-shrink-0">
-              <%= link_to '編集', edit_amenity_group_path(amenity), class: 'btn btn-primary btn-sm' %>
-              <%= button_to '削除', amenity_group_path(amenity), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+              <%= link_to '編集', edit_employees_amenity_group_path(amenity), class: 'btn btn-primary btn-sm' %>
+              <%= button_to '削除', employees_amenity_group_path(amenity), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
             </div>
           </li>
         <% end %>

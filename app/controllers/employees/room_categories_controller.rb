@@ -1,4 +1,4 @@
-class RoomCategoriesController < ApplicationController
+class Employees::RoomCategoriesController < Employees::ApplicationController
   def new
     @category_all = RoomCategory.default_order
     @room_category = RoomCategory.new
@@ -10,7 +10,7 @@ class RoomCategoriesController < ApplicationController
 
     if @room_category.save
       EmbeddingService.create_for_roomcategory(@room_category)
-      redirect_to new_room_category_path,
+      redirect_to new_employees_room_category_path,
       notice: "ルームカテゴリー「#{@room_category.name}」は無事作成されました。"
     else
       render :new, status: :unprocessable_content
@@ -24,7 +24,7 @@ class RoomCategoriesController < ApplicationController
   def update
     @edit_room_category = RoomCategory.find(params[:id])
     if @edit_room_category.update(room_category_params)
-      redirect_to new_room_category_path, notice: "ルームカテゴリーを更新しました。"
+      redirect_to new_employees_room_category_path, notice: "ルームカテゴリーを更新しました。"
     else
       render :edit, status: :unprocessable_content
     end
@@ -33,7 +33,7 @@ class RoomCategoriesController < ApplicationController
   def destroy
     @delete_room_category = RoomCategory.find(params[:id])
     @delete_room_category.destroy
-    redirect_to new_room_category_path, status: :see_other
+    redirect_to new_employees_room_category_path, status: :see_other
   end
 
   private

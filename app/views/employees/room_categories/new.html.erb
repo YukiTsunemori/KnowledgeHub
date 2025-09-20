@@ -4,7 +4,8 @@
       ルームカテゴリ新規作成
     </div>
     <div class="card-body">
-      <%= simple_form_for @room_category do |f| %>
+
+      <%= simple_form_for [:employees, @room_category] do |f| %>
         <%= f.input :name, label: 'カテゴリーネーム' %>
         <div class="d-flex justify-content-end mt-3">
           <%= f.button :submit, '追加', class: 'btn btn-primary' %>
@@ -24,8 +25,8 @@
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <span class="text-start w-100"><%= category.name %></span>
             <div class="d-flex gap-2 ms-2 flex-shrink-0">
-              <%= link_to '編集', edit_room_category_path(category), class: 'btn btn-primary btn-sm' %>
-              <%= button_to '削除', room_category_path(category), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+              <%= link_to '編集', edit_employees_room_category_path(category), class: 'btn btn-primary btn-sm' %>
+              <%= button_to '削除', employees_room_category_path(category), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
             </div>
           </li>
         <% end %>

@@ -1,4 +1,4 @@
-class AmenityGroupsController < ApplicationController
+class Employees::AmenityGroupsController < Employees::ApplicationController
   def new
     @group_all = AmenityGroup.default_order
     @amenity_group = AmenityGroup.new
@@ -10,7 +10,7 @@ class AmenityGroupsController < ApplicationController
 
     if @amenity_group.save
       EmbeddingService.create_for_amenitygroups(@amenity_group)
-      redirect_to new_amenity_group_path,
+      redirect_to new_employees_amenity_group_path,
       notice: "アメニティーグループ「#{@amenity_group.name}」は無事作成されました。"
     else
       render :new, status: :unprocessable_content
@@ -24,7 +24,7 @@ class AmenityGroupsController < ApplicationController
   def update
     @edit_amenity_group = AmenityGroup.find(params[:id])
     if @edit_amenity_group.update(amenity_group_params)
-      redirect_to new_amenity_group_path, notice: "アメニティーグループを更新しました。"
+      redirect_to new_employees_amenity_group_path, notice: "アメニティーグループを更新しました。"
     else
       render :edit, status: :unprocessable_content
     end
@@ -33,7 +33,7 @@ class AmenityGroupsController < ApplicationController
   def destroy
     @amenity_group = AmenityGroup.find(params[:id])
     @amenity_group.destroy
-    redirect_to new_amenity_group_path, notice: "アメニティーグループ「#{@amenity_group.name}」は無事削除されました。"
+    redirect_to new_employees_amenity_group_path, notice: "アメニティーグループ「#{@amenity_group.name}」は無事削除されました。"
   end
 
   private

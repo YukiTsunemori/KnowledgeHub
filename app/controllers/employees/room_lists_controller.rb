@@ -1,4 +1,4 @@
-class RoomListsController < ApplicationController
+class Employees::RoomListsController < Employees::ApplicationController
   def new
     @room = RoomList.new
     @room_lists = RoomList.default_order
@@ -8,7 +8,7 @@ class RoomListsController < ApplicationController
     @room = RoomList.new(room_list_parameter)
     if @room.save
       EmbeddingService.create_for_roomlists(@room)
-      redirect_to new_room_list_path,
+      redirect_to new_employees_room_list_path,
       notice: "ルーム情報「#{@room.room_type_name}」は無事作成されました。"
     else
       render :new, status: :unprocessable_content
@@ -22,7 +22,7 @@ class RoomListsController < ApplicationController
   def update
     @edit_room_list = RoomList.find(params[:id])
     if @edit_room_list.update(room_list_parameter)
-      redirect_to new_room_list_path, notice: "ルーム情報を更新しました。"
+      redirect_to new_employees_room_list_path, notice: "ルーム情報を更新しました。"
     else
       render :edit, status: :unprocessable_content
     end
@@ -31,7 +31,7 @@ class RoomListsController < ApplicationController
   def destroy
     @room = RoomList.find(params[:id])
     @room.destroy
-    redirect_to new_room_list_path, notice: "ルーム情報「#{@room.room_type_name}」は無事削除されました。", status: :see_other
+    redirect_to new_employees_room_list_path, notice: "ルーム情報「#{@room.room_type_name}」は無事削除されました。", status: :see_other
   end
 
   private

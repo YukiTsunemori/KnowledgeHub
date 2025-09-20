@@ -1,32 +1,43 @@
-<div class="container py-4" style="max-width: 500px;">
-  <div class="card shadow-sm mb-4">
-    <div class="card-header bg-primary text-white">
-      施設新規作成
-    </div>
-    <div class="card-body">
-      <%= simple_form_for [:employees, @facility] do |f| %>
-        <%= f.input :name, label: '施設名' %>
-        <%= f.input :open_time, label: 'オープン' %>
-        <%= f.input :close_time, label: 'クローズ' %>
-        <%= f.input :note, label: '備考' %>
-        <div class="d-flex justify-content-end mt-3">
-          <%= f.submit '送信', class: 'btn btn-primary' %>
-          <%= link_to '戻る', employees_configurations_path, class: 'btn btn-outline-secondary ms-2' %>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6" style="max-width: 500px;">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+          施設新規作成
         </div>
-      <% end %>
+        <div class="card-body">
+          <%= simple_form_for [:employees, @facility] do |f| %>
+            <%= f.input :name, label: '施設名' %>
+            <%= f.input :open_time, label: 'オープン' %>
+            <%= f.input :close_time, label: 'クローズ' %>
+            <%= f.input :note, label: '備考' %>
+            <div class="d-flex justify-content-end mt-3">
+              <%= f.submit '送信', class: 'btn btn-primary' %>
+              <%= link_to '戻る', employees_configurations_path, class: 'btn btn-outline-secondary ms-2' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header bg-light">
-      登録済み施設一覧
-    </div>
-    <div class="card-body p-0">
-      <ol class="list-group list-group-numbered mb-0">
-        <% @facilities&.each do |facility| %>
-          <li class="list-group-item"><%= facility.name %></li>
-        <% end %>
-      </ol>
+    <div class="col-12 col-md-6" style="max-width: 500px;">
+      <div class="card mb-4">
+        <div class="card-header bg-light">
+          登録済み施設一覧
+        </div>
+        <div class="card-body p-0">
+          <ol class="list-group list-group-numbered mb-0">
+            <% @facilities&.each do |facility| %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="text-start w-100"><%= facility.name %></span>
+                <div class="d-flex gap-2 ms-2 flex-shrink-0">
+                  <%= link_to '編集', edit_employees_facility_path(facility), class: 'btn btn-primary btn-sm' %>
+                  <%= button_to '削除', employees_facility_path(facility), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+                </div>
+              </li>
+            <% end %>
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
 </div>

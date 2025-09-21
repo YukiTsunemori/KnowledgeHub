@@ -12,12 +12,9 @@ Rails.application.routes.draw do
   namespace :employees do
     root to: "configurations#index"
     resources :configurations, only: %i[index]
-    resources :room_categories
-    resources :amenity_groups, only: %i[new create edit update destroy]
-    resources :room_lists
-    resources :facilities
-  end
-  resources :chats, only: [ :index, :new, :create, :show ] do
-  resources :messages, only: [ :create ]
+    resources :room_categories, :amenity_groups, :room_lists, :facilities, only: %i[new create edit update destroy]
+    resources :chats, only: [ :index, :new, :create, :show ] do
+      resources :messages, only: [ :create ]
+    end
   end
 end

@@ -11,10 +11,10 @@
     <% end %>
 
   <div>
-    <%= render "messages/form", chat: @chat, message: @chat.messages.new %>
+    <%= render "employees/messages/form", chat: @chat, message: @chat.messages.new %>
   </div>
 
   <div>
-    <%= link_to 'チャット一覧', chats_path, class: "link-secondary" %>
+    <%= link_to 'チャット一覧', employees_chats_path, class: "link-secondary" %>
   </div>
 </div>

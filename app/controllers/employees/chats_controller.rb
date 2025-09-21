@@ -1,4 +1,4 @@
-class ChatsController < ApplicationController
+class Employees::ChatsController < Employees::ApplicationController
   before_action :authenticate_employee!
   def index
     @chats = chat_scope.order(id: :desc)

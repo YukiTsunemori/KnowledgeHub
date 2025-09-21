@@ -5,6 +5,8 @@ This directory contains documentation and articles related to the Knowledge Hub 
 ## Contents
 
 - `zenn-article.md` - Comprehensive technical article about the Knowledge Hub RAG AI chat application, suitable for publication on Zenn or other technical blogs.
+- `architecture.md` - Detailed technical architecture documentation with system diagrams
+- `QUICKSTART.md` - Quick start guide for users and administrators
 
 ## About Knowledge Hub
 
@@ -22,4 +24,16 @@ The application follows a role-based architecture:
 - **Vector Database**: Stores enterprise information as embeddings
 - **RAG System**: Provides intelligent responses based on stored knowledge
 
-For detailed technical implementation and usage instructions, see the Zenn article.
+## Documentation Overview
+
+### For Developers
+- **zenn-article.md**: Complete development story and technical implementation
+- **architecture.md**: System architecture and technical specifications
+
+### For Users
+- **QUICKSTART.md**: Step-by-step usage guide for admins and employees
+
+### For Project Setup
+- **../README.md**: Main project documentation with setup instructions
+
+For detailed technical implementation and usage instructions, see the individual documentation files.

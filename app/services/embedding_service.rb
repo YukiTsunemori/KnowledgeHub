@@ -30,7 +30,7 @@ class EmbeddingService
   end
 
   def self.create_for_facilities(facility)
-    content = ChunkGenerator.amenitygroups_chunk(facility)
+    content = ChunkGenerator.facilities_chunk(facility)
     embedding = RubyLLM.embed(content, dimensions: 1536).vectors
 
     KnowledgeChunk.create!(

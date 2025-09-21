@@ -1,12 +1,12 @@
 <div>
   <div>
-    <%= button_to '新しいチャットを開始', chats_path, data: { turbo_method: :post }, class: 'btn btn-primary' %>
+    <%= button_to '新しいチャットを開始', employees_chats_path, data: { turbo_method: :post }, class: 'btn btn-primary' %>
   </div>
   <% if @chats.present? %>
     <div>
       <% @chats.each do |chat| %>
         <div>
-          <%= link_to chat_path(chat), class: 'text-decoration-none' do %>
+          <%= link_to employees_chat_path(chat), class: 'text-decoration-none' do %>
             <span><%= chat_first_message(chat) %></span>
             <span><%= l chat.created_at, format: :long %></span>
           <% end %>
@@ -16,4 +16,7 @@
   <% else %>
     <p>はじめてのチャットを開始しましょう</p>
   <% end %>
+  <div>
+    <%= link_to 'Configurationに戻る', employees_configurations_path, class: "link-secondary"%>
+  </div>
 </div>

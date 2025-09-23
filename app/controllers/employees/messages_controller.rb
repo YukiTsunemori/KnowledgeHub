@@ -2,7 +2,7 @@ class Employees::MessagesController < Employees::ApplicationController
   def create
     @chat = find_chat
     RagService.answer(@chat.id, params[:message][:content])
-    redirect_to @chat
+    redirect_to employees_chat_path(@chat)
   end
 
   private

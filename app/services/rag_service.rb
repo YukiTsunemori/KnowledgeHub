@@ -24,7 +24,7 @@ class RagService
           Turbo::StreamsChannel.broadcast_append_to(
             "chat_#{chat.id}",
             target: "conversation-log",
-            partial: "messages/message",
+            partial: "employees/messages/message",
             locals: { message: user_message }
           )
         end

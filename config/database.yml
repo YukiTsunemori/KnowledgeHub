@@ -79,20 +79,10 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  primary: &primary_production
-    <<: *default
-    database: knowledge_hub_production
-    username: knowledge_hub
-    password: <%= ENV["KNOWLEDGE_HUB_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: knowledge_hub_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: knowledge_hub_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: knowledge_hub_production_cable
-    migrations_paths: db/cable_migrate
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  database: <%= ENV["DB_NAME"] %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASS"] %>
+  host: /cloudsql/<%= ENV["INSTANCE_CONNECTION_NAME"] %>

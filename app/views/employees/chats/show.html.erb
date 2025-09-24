@@ -1,20 +1,32 @@
-<div data-controller="messages" data-chat-id="<%= @chat.id %>">
-  <%= turbo_stream_from "chat_#{@chat.id}" %>
-    <div>
-      <div> 開始日時: <%= l @chat.created_at, format: :long %></div>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+          <span>チャット</span>
+          <%= link_to '一覧に戻る', employees_chats_path, class: 'btn btn-outline-light btn-sm' %>
+        </div>
+        <div class="card-body" style="min-height: 500px;">
+          <div data-controller="messages" style="overflow-y: auto; max-height: 500px;">
+            <%= turbo_stream_from "chat_#{@chat.id}" %>
+            <%= turbo_frame_tag "conversation_log" do %>
+              <% if @chat.messages.present? %>
+                <%= render @chat.messages %>
+              <% else %>
+                <p class="text-center text-muted my-4">まだメッセージがありません</p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-footer bg-light">
+          <%= turbo_frame_tag "new_message" do %>
+            <%= simple_form_for([:employees, @chat, Message.new], html: { class: "d-flex gap-2 align-items-end" }) do |f| %>
+              <%= f.input :content, label: false, placeholder: "メッセージを入力...", input_html: { class: "form-control", autocomplete: "off", rows: 1, style: "resize:none;" } %>
+              <%= f.button :submit, '送信', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-
-    <%= turbo_frame_tag "conversation-log" do %>
-      <% if @chat.messages.present? %>
-        <%= render @chat.messages %>
-      <% end %>
-    <% end %>
-
-  <div>
-    <%= render "employees/messages/form", chat: @chat, message: @chat.messages.new %>
-  </div>
-
-  <div>
-    <%= link_to 'チャット一覧', employees_chats_path, class: "link-secondary" %>
   </div>
 </div>

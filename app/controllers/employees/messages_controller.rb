@@ -1,8 +1,11 @@
 class Employees::MessagesController < Employees::ApplicationController
   def create
     @chat = find_chat
-    RagService.answer(@chat.id, params[:message][:content])
-    redirect_to employees_chat_path(@chat)
+    RagService.answer(@chat.id, message_params[:content])
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to employees_chat_path(@chat) }
+    end
   end
 
   private

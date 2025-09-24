@@ -1,3 +1,22 @@
 .show-message {
   position: fixed;
+  top: 56px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: #f8f9fa;
+  overflow: hidden;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.card-footer {
+  padding: 0.75rem 1.25rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }

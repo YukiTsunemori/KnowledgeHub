@@ -6,9 +6,8 @@ class Employees::ChatsController < Employees::ApplicationController
 
   def create
     @chat = chat_scope.new
-
     if @chat.save
-      redirect_to @chat
+      redirect_to employees_chat_path(@chat)
     else
       render :index, status: :unprocessable_entity
     end

@@ -32,7 +32,7 @@ class ChunkGenerator
     <<~TEXT
       施設名: #{facility.name}
       営業時間: #{facility.open_time} - #{facility.close_time}
-      説明: #{facility.content}
+      説明: #{facility.note}
     TEXT
   end
 end

@@ -7,6 +7,7 @@ class EmbeddingService
       content: content,
       embedding: embedding
     )
+    KnowledgeChunk.last.id
   end
 
   def self.create_for_roomcategory(category)
@@ -17,6 +18,7 @@ class EmbeddingService
       content: content,
       embedding: embedding
     )
+    KnowledgeChunk.last.id
   end
 
   def self.create_for_amenitygroups(amenity)
@@ -27,6 +29,7 @@ class EmbeddingService
       content: content,
       embedding: embedding
     )
+    KnowledgeChunk.last.id
   end
 
   def self.create_for_facilities(facility)
@@ -37,5 +40,6 @@ class EmbeddingService
       content: content,
       embedding: embedding
     )
+    KnowledgeChunk.last.id
   end
 end

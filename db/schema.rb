@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_17_115312) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_26_073746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -32,6 +32,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_115312) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "knowledge_chunk_id"
+    t.index ["knowledge_chunk_id"], name: "index_amenity_groups_on_knowledge_chunk_id"
   end
 
   create_table "chat_bots", force: :cascade do |t|
@@ -76,6 +78,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_115312) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "open_time"
+    t.bigint "knowledge_chunk_id"
+    t.index ["knowledge_chunk_id"], name: "index_facilities_on_knowledge_chunk_id"
   end
 
   create_table "knowledge_chunks", force: :cascade do |t|
@@ -104,6 +108,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_115312) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "knowledge_chunk_id"
+    t.index ["knowledge_chunk_id"], name: "index_room_categories_on_knowledge_chunk_id"
   end
 
   create_table "room_lists", force: :cascade do |t|
@@ -117,7 +123,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_115312) do
     t.bigint "amenity_group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "knowledge_chunk_id"
     t.index ["amenity_group_id"], name: "index_room_lists_on_amenity_group_id"
+    t.index ["knowledge_chunk_id"], name: "index_room_lists_on_knowledge_chunk_id"
     t.index ["room_category_id"], name: "index_room_lists_on_room_category_id"
   end
 
@@ -149,10 +157,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_115312) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "amenity_groups", "knowledge_chunks"
   add_foreign_key "chat_bots", "admins"
   add_foreign_key "chats", "employees"
+  add_foreign_key "facilities", "knowledge_chunks"
   add_foreign_key "messages", "chats"
+  add_foreign_key "room_categories", "knowledge_chunks"
   add_foreign_key "room_lists", "amenity_groups"
+  add_foreign_key "room_lists", "knowledge_chunks"
   add_foreign_key "room_lists", "room_categories"
   add_foreign_key "sessions", "users"
   add_foreign_key "tool_calls", "messages"

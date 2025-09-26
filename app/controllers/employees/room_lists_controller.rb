@@ -8,6 +8,7 @@ class Employees::RoomListsController < Employees::ApplicationController
     @room = RoomList.new(room_list_parameter)
     if @room.save
       EmbeddingService.create_for_roomlists(@room)
+      @room.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_room_list_path,
       notice: "ルーム情報「#{@room.room_type_name}」は無事作成されました。"
     else

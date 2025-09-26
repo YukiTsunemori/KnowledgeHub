@@ -10,6 +10,7 @@ class Employees::RoomCategoriesController < Employees::ApplicationController
 
     if @room_category.save
       EmbeddingService.create_for_roomcategory(@room_category)
+      @room_category.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_room_category_path,
       notice: "ルームカテゴリー「#{@room_category.name}」は無事作成されました。"
     else

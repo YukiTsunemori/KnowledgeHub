@@ -10,6 +10,7 @@ class Employees::AmenityGroupsController < Employees::ApplicationController
 
     if @amenity_group.save
       EmbeddingService.create_for_amenitygroups(@amenity_group)
+      @amenity_group.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_amenity_group_path,
       notice: "アメニティーグループ「#{@amenity_group.name}」は無事作成されました。"
     else

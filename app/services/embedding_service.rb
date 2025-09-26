@@ -49,8 +49,8 @@ class EmbeddingService
   def self.update_for_room_lists(edit_room_list)
     content = ChunkGenerator.roomlists_chunk(edit_room_list)
     embedding = RubyLLM.embed(content, dimensions: 1536).vectors
-
-      KnowledgeChunk.update(
+      knowledge_chunk_id = KnowledgeChunk.find_by(id: edit_room_list.knowledge_chunk_id)
+      knowledge_chunk_id.update(
       content: content,
       embedding: embedding
     )
@@ -60,8 +60,7 @@ class EmbeddingService
     content = ChunkGenerator.roomcategories_chunk(edit_room_category)
     embedding = RubyLLM.embed(content, dimensions: 1536).vectors
       knowledge_chunk_id = KnowledgeChunk.find_by(id: edit_room_category.knowledge_chunk_id)
-      binding.irb
-      knowledge_chunk_id.update!(
+      knowledge_chunk_id.update(
         content: content,
         embedding: embedding
       )

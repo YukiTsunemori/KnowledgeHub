@@ -23,6 +23,7 @@ class Employees::RoomListsController < Employees::ApplicationController
   def update
     @edit_room_list = RoomList.find(params[:id])
     if @edit_room_list.update(room_list_parameter)
+      EmbeddingService.update_for_room_lists(@edit_room_list)
       redirect_to new_employees_room_list_path, notice: "ルーム情報を更新しました。"
     else
       render :edit, status: :unprocessable_content
@@ -32,12 +33,14 @@ class Employees::RoomListsController < Employees::ApplicationController
   def destroy
     @room = RoomList.find(params[:id])
     @room.destroy
-    redirect_to new_employees_room_list_path, notice: "ルーム情報「#{@room.room_type_name}」は無事削除されました。", status: :see_other
+    knowledge_chunk = KnowledgeChunk.find_by(id: @room.knowledge_chunk_id)
+    knowledge_chunk.destroy
+    redirect_to new_employees_room_list_path, notice: "ルーム情報「#{@room.room_type_name}」は無事削除されました。"
   end
 
   private
 
   def room_list_parameter
-    params.require(:room_list).permit(:room_type_name, :square_meters, :capacity, :bed_type, :bed_quantity, :htwn, :room_category_id, :amenity_group_id)
+    params.require(:room_list).permit(:room_type_name, :square_meters, :capacity, :bed_type, :bed_quantity, :htwn, :room_category_id, :amenity_group_id, :knowledge_chunk_id)
   end
 end

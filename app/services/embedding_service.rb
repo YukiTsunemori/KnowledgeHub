@@ -42,4 +42,14 @@ class EmbeddingService
     )
     KnowledgeChunk.last.id
   end
+
+  def self.update_for_room_lists(edit_room_list)
+    content = ChunkGenerator.roomlists_chunk(edit_room_list)
+    embedding = RubyLLM.embed(content, dimensions: 1536).vectors
+
+      KnowledgeChunk.update!(
+      content: content,
+      embedding: embedding
+    )
+  end
 end

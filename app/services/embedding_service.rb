@@ -1,4 +1,5 @@
 class EmbeddingService
+  # ここから下はcreate用メソッド
   def self.create_for_roomlists(room)
     content = ChunkGenerator.roomlists_chunk(room)
     embedding = RubyLLM.embed(content, dimensions: 1536).vectors
@@ -42,14 +43,27 @@ class EmbeddingService
     )
     KnowledgeChunk.last.id
   end
+  # create用メソッドはここまで
 
+  # ここから下はupdate用のメソッド
   def self.update_for_room_lists(edit_room_list)
     content = ChunkGenerator.roomlists_chunk(edit_room_list)
     embedding = RubyLLM.embed(content, dimensions: 1536).vectors
 
-      KnowledgeChunk.update!(
+      KnowledgeChunk.update(
       content: content,
       embedding: embedding
     )
+  end
+
+  def self.update_for_room_category(edit_room_category)
+    content = ChunkGenerator.roomcategories_chunk(edit_room_category)
+    embedding = RubyLLM.embed(content, dimensions: 1536).vectors
+      knowledge_chunk_id = KnowledgeChunk.find_by(id: edit_room_category.knowledge_chunk_id)
+      binding.irb
+      knowledge_chunk_id.update!(
+        content: content,
+        embedding: embedding
+      )
   end
 end

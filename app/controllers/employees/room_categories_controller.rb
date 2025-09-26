@@ -25,6 +25,7 @@ class Employees::RoomCategoriesController < Employees::ApplicationController
   def update
     @edit_room_category = RoomCategory.find(params[:id])
     if @edit_room_category.update(room_category_params)
+      EmbeddingService.update_for_room_category(@edit_room_category)
       redirect_to new_employees_room_category_path, notice: "ルームカテゴリーを更新しました。"
     else
       render :edit, status: :unprocessable_content
@@ -34,6 +35,8 @@ class Employees::RoomCategoriesController < Employees::ApplicationController
   def destroy
     @delete_room_category = RoomCategory.find(params[:id])
     @delete_room_category.destroy
+    knowledge_chunk = KnowledgeChunk.find_by(id: @delete_room_category.knowledge_chunk_id)
+    knowledge_chunk.destroy
     redirect_to new_employees_room_category_path, status: :see_other
   end
 

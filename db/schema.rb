@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_26_073054) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_26_073422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -76,6 +76,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_26_073054) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "open_time"
+    t.bigint "knowledge_chunk_id"
+    t.index ["knowledge_chunk_id"], name: "index_facilities_on_knowledge_chunk_id"
   end
 
   create_table "knowledge_chunks", force: :cascade do |t|
@@ -155,6 +157,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_26_073054) do
 
   add_foreign_key "chat_bots", "admins"
   add_foreign_key "chats", "employees"
+  add_foreign_key "facilities", "knowledge_chunks"
   add_foreign_key "messages", "chats"
   add_foreign_key "room_categories", "knowledge_chunks"
   add_foreign_key "room_lists", "amenity_groups"

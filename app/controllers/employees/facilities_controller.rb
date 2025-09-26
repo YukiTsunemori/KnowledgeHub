@@ -8,6 +8,7 @@ class Employees::FacilitiesController < Employees::ApplicationController
     @facility = Facility.new(facility_parameter)
     if @facility.save
       EmbeddingService.create_for_facilities(@facility)
+      @facility.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_facility_path,
       notice: "施設情報「#{@facility.name}」は無事作成されました。"
     else

@@ -11,7 +11,7 @@
             <%= f.input :square_meters, label: '部屋の面積' %>
             <%= f.input :capacity, label: '最大収容人数' %>
             <%= f.input :bed_type, label: 'ベッドタイプ', placeholder: 'ツイン or キング etc..' %>
-            <%= f.input :bed_quantity, label: '客室総数' %>
+            <%= f.input :bed_quantity, label: 'ベッドの数' %>
             <%= f.input :htwn, label: 'ハリウッドツイン仕様' %>
             <div><%= f.input :room_category_id, collection: RoomCategory.all, label: 'ルームカテゴリー' %></div>
             <div><%= f.input :amenity_group_id, collection: AmenityGroup.all, label: 'アメニティーグループ' %></div>

@@ -1,6 +1,4 @@
 class ChunkGenerator
-  # このgeneratorで各モデルのチャンクを生成します。
-  # 新しいデータを登録した後や更新後は再度チャンクを生成する必要があります。
   def self.roomlists_chunk(room)
     <<~TEXT
       ルームタイプ: #{room.room_type_name}

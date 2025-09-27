@@ -65,4 +65,14 @@ class EmbeddingService
         embedding: embedding
       )
   end
+
+  def self.update_for_amenity_groups(edit_amenity_group)
+    content = ChunkGenerator.amenitygroups_chunk(edit_amenity_group)
+    embedding = RubyLLM.embed(content, dimensions: 1536).vectors
+      knowledge_chunk_id = KnowledgeChunk.find_by(id: edit_amenity_group.knowledge_chunk_id)
+      knowledge_chunk_id.update(
+        content: content,
+        embedding: embedding
+      )
+  end
 end

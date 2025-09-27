@@ -75,4 +75,14 @@ class EmbeddingService
         embedding: embedding
       )
   end
+
+  def self.update_for_facility(facility)
+    content = ChunkGenerator.facilities_chunk(facility)
+    embedding = RubyLLM.embed(content, dimensions: 1536).vectors
+    knowledge_chunk_id = KnowledgeChunk.find_by(id: facility.knowledge_chunk_id)
+    knowledge_chunk_id.update(
+      content: content,
+      embedding: embedding
+    )
+  end
 end

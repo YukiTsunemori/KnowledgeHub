@@ -11,14 +11,14 @@ class ChunkGenerator
       HTWN: #{room.htwn ? 'Yes' : 'No'}
       ルームカテゴリー: #{room.room_category.name}
       アメニティーグループ: #{room.amenity_group.name}
-      アメニティーグループの説明: #{room.amenity_group.content}
+      アメニティーグループの詳細: #{room.amenity_group.content}
     TEXT
   end
 
   def self.amenitygroups_chunk(amenity)
     <<~TEXT
       アメニティーグループ: #{amenity.name}
-      説明: #{amenity.content}
+      アメニティーの詳細: #{amenity.content}
     TEXT
   end
 

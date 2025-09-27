@@ -9,7 +9,7 @@ class Employees::AmenityGroupsController < Employees::ApplicationController
     @group_all = AmenityGroup.default_order
 
     if @amenity_group.save
-      EmbeddingService.create_for_amenitygroups(@amenity_group)
+      CreateEmbeddingService.create_for_amenitygroups(@amenity_group)
       @amenity_group.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_amenity_group_path,
       notice: "アメニティーグループ「#{@amenity_group.name}」は無事作成されました。"
@@ -25,7 +25,7 @@ class Employees::AmenityGroupsController < Employees::ApplicationController
   def update
     @edit_amenity_group = AmenityGroup.find(params[:id])
     if @edit_amenity_group.update(amenity_group_params)
-      EmbeddingService.update_for_amenity_groups(@edit_amenity_group)
+      UpdateEmbeddingService.update_for_amenity_groups(@edit_amenity_group)
       redirect_to new_employees_amenity_group_path, notice: "アメニティーグループを更新しました。"
     else
       render :edit, status: :unprocessable_content

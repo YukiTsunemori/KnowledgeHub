@@ -9,7 +9,7 @@ class Employees::RoomCategoriesController < Employees::ApplicationController
     @category_all = RoomCategory.default_order
 
     if @room_category.save
-      EmbeddingService.create_for_roomcategory(@room_category)
+      CreateEmbeddingService.create_for_roomcategory(@room_category)
       @room_category.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_room_category_path,
       notice: "ルームカテゴリー「#{@room_category.name}」は無事作成されました。"
@@ -25,7 +25,7 @@ class Employees::RoomCategoriesController < Employees::ApplicationController
   def update
     @edit_room_category = RoomCategory.find(params[:id])
     if @edit_room_category.update(room_category_params)
-      EmbeddingService.update_for_room_category(@edit_room_category)
+      UpdateEmbeddingService.update_for_room_category(@edit_room_category)
       redirect_to new_employees_room_category_path, notice: "ルームカテゴリーを更新しました。"
     else
       render :edit, status: :unprocessable_content

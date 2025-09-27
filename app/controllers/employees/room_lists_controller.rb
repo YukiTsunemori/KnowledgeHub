@@ -7,7 +7,7 @@ class Employees::RoomListsController < Employees::ApplicationController
   def create
     @room = RoomList.new(room_list_parameter)
     if @room.save
-      EmbeddingService.create_for_roomlists(@room)
+      CreateEmbeddingService.create_for_roomlists(@room)
       @room.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_room_list_path,
       notice: "ルーム情報「#{@room.room_type_name}」は無事作成されました。"
@@ -23,7 +23,7 @@ class Employees::RoomListsController < Employees::ApplicationController
   def update
     @edit_room_list = RoomList.find(params[:id])
     if @edit_room_list.update(room_list_parameter)
-      EmbeddingService.update_for_room_lists(@edit_room_list)
+      UpdateEmbeddingService.update_for_room_lists(@edit_room_list)
       redirect_to new_employees_room_list_path, notice: "ルーム情報を更新しました。"
     else
       render :edit, status: :unprocessable_content

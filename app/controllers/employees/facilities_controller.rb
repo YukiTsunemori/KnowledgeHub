@@ -7,7 +7,7 @@ class Employees::FacilitiesController < Employees::ApplicationController
   def create
     @facility = Facility.new(facility_parameter)
     if @facility.save
-      EmbeddingService.create_for_facilities(@facility)
+      CreateEmbeddingService.create_for_facilities(@facility)
       @facility.update!(knowledge_chunk_id: KnowledgeChunk.last.id)
       redirect_to new_employees_facility_path,
       notice: "施設情報「#{@facility.name}」は無事作成されました。"
@@ -23,7 +23,7 @@ class Employees::FacilitiesController < Employees::ApplicationController
   def update
     @facility = Facility.find(params[:id])
     if @facility.update(facility_parameter)
-      EmbeddingService.update_for_facility(@facility)
+      UpdateEmbeddingService.update_for_facility(@facility)
       redirect_to new_employees_facility_path, notice: "施設情報は無事更新されました。"
     else
       render :edit, status: :unprocessable_content

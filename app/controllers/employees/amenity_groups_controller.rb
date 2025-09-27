@@ -25,6 +25,7 @@ class Employees::AmenityGroupsController < Employees::ApplicationController
   def update
     @edit_amenity_group = AmenityGroup.find(params[:id])
     if @edit_amenity_group.update(amenity_group_params)
+      EmbeddingService.update_for_amenity_groups(@edit_amenity_group)
       redirect_to new_employees_amenity_group_path, notice: "アメニティーグループを更新しました。"
     else
       render :edit, status: :unprocessable_content
@@ -34,6 +35,8 @@ class Employees::AmenityGroupsController < Employees::ApplicationController
   def destroy
     @amenity_group = AmenityGroup.find(params[:id])
     @amenity_group.destroy
+    knowledge_chunk = KnowledgeChunk.find_by(id: @amenity_group.knowledge_chunk_id)
+    knowledge_chunk.destroy
     redirect_to new_employees_amenity_group_path, notice: "アメニティーグループ「#{@amenity_group.name}」は無事削除されました。"
   end
 

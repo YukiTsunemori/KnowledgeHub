@@ -23,6 +23,7 @@ class Employees::FacilitiesController < Employees::ApplicationController
   def update
     @facility = Facility.find(params[:id])
     if @facility.update(facility_parameter)
+      EmbeddingService.update_for_facility(@facility)
       redirect_to new_employees_facility_path, notice: "施設情報は無事更新されました。"
     else
       render :edit, status: :unprocessable_content
@@ -32,6 +33,8 @@ class Employees::FacilitiesController < Employees::ApplicationController
   def destroy
     @facility = Facility.find(params[:id])
     @facility.destroy
+    knowledge_chunk = KnowledgeChunk.find_by(id: @facility.knowledge_chunk_id)
+    knowledge_chunk.destroy
     redirect_to new_employees_facility_path, notice: "施設情報「#{@facility.name}」は無事削除されました。", status: :see_other
   end
 

@@ -21,10 +21,12 @@ gem "devise"
 gem "ruby_llm", "~> 1.8"
 gem "pgvector"
 gem "neighbor"
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
+  gem 'rspec-rails', '~> 8.0', '>= 8.0.2'
 end
 
 group :development do

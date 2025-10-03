@@ -10,7 +10,7 @@ RSpec.describe "room_category", type: :system do
 
     context "入力フォームに文字列が入っているとき" do
       let(:room_category) { build(:room_category) }
-      it "ルームカテゴリーのフォームが存在し、新規作成ができること" do
+      it "新規作成が無事できること" do
         expect(page).to have_content("ルームカテゴリ新規作成")
         fill_in "カテゴリーネーム", with: room_category.name
         click_button "追加"

@@ -16,8 +16,10 @@ RSpec.describe "room_category", type: :system do
         click_button "追加"
         expect(page).to have_content("ルームカテゴリー「#{room_category.name}」は無事作成されました。")
       end
+    end
       
-      it "空の入力を検知し、エラーメッセージを確認すること" do
+    context "入力フォームがからの時" do
+      it "エラーメッセージを確認すること" do
         fill_in "カテゴリーネーム", with: ""
         click_button "追加"
         expect(page).to have_content("カテゴリを入力してください")
@@ -26,7 +28,7 @@ RSpec.describe "room_category", type: :system do
 
     context "すでに同じ名前が登録されている時" do
       let(:room_category) { create(:room_category) }
-      it "エラーメッセージを確認する" do
+      it "エラーメッセージを確認すること" do
         fill_in "カテゴリーネーム", with: room_category.name
         click_button "追加"
         expect(page).to have_content("カテゴリはすでに存在します")

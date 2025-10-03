@@ -18,7 +18,7 @@ RSpec.describe "room_category", type: :system do
       end
     end
       
-    context "入力フォームがからの時" do
+    context "入力フォームが空の時" do
       it "エラーメッセージを確認すること" do
         fill_in "カテゴリーネーム", with: ""
         click_button "追加"

@@ -1,0 +1,15 @@
+<div class="form-container">
+  <div class="card form-card">
+    <div class="card-body">
+      <h2 class="page-title">従業員アカウント編集</h2>
+      <%= simple_form_for @employee, url: employees_account_path do |f| %>
+        <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+        <%= f.input :current_password %>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

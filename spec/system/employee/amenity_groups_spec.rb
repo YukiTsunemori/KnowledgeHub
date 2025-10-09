@@ -11,8 +11,8 @@ RSpec.describe "amenity_group", type: :system do
     context "入力フォームに文字列が入っている時" do
       let(:amenity_group) { build(:amenity_group) }
       it "新規作成が無事できること" do
-        fill_in "グループネーム", with: amenity_group.name
-        fill_in "内容", with: amenity_group.content
+        fill_in "グループネーム", with: 'アメニティセットA'
+        fill_in "内容", with: 'ドライヤー(Refa）、コーム、コットン'
         click_button "追加"
         expect(page).to have_content("アメニティーグループ「#{amenity_group.name}」は無事作成されました。")
       end

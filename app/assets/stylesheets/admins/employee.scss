@@ -20,9 +20,22 @@
   color: #333;
 }
 
-.show-item {
-  margin: 1rem 0;
+.show-item-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1rem 0 1.5rem 0;
+  gap: 1rem;
+  border-bottom: 1px solid #eee;
 }
+
+.show-label {
+  font-weight: bold;
+  // text-align: right;
+}
+
+// .show-item {
+//   margin: 1rem 0;
+// }
 
 .show-actions {
   display: flex;

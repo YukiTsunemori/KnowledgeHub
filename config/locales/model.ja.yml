@@ -35,3 +35,10 @@ ja:
         amenity_group: アメニティーグループ
       room_category:
         name: カテゴリ
+      profile:
+        nickname: ニックネーム
+        birthday: 生年月日
+        living_location: 居住地
+        hometown: 出身地
+        interest: 趣味・興味
+        bio: 自己紹介

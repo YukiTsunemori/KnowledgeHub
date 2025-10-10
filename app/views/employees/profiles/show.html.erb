@@ -1,0 +1,6 @@
+<% if @profile %>
+  hoge
+<% else %>
+  <p>まだプロフィールの登録がありません。下記から登録しましょう</p>
+  <%= link_to '新規登録', new_employees_profile_path, class: "btn btn-primary" %>
+<% end %>

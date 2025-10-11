@@ -3,9 +3,14 @@
     <h2 class="show-title">従業員詳細</h2>
     <div class="show-item"><%= @employee.name %></div>
     <div class="show-item"><%= @employee.email %></div>
-    <div class="show-actions">
-      <%= link_to '編集', edit_admins_employee_path(@employee), class: "btn btn-primary" %>
-      <%= button_to '削除', admins_employee_path(@employee), method: :delete, data: { turbo_confirm: "従業員アカウントを削除してもよろしいですか" }, class: "btn btn-link text-secondary" %>
+    <div class="show-actions d-flex justify-content-between align-items-center">
+      <div class="d-flex gap-2">
+        <%= link_to '編集', edit_admins_employee_path(@employee), class: "btn btn-primary" %>
+        <%= button_to '削除', admins_employee_path(@employee), method: :delete, data: { turbo_confirm: "従業員アカウントを削除してもよろしいですか" }, class: "btn btn-secondary" %>
+      </div>
+      <div>
+        <%= link_to "戻る", admins_employees_path, class: 'btn btn-outline-secondary' %>
+      </div>
     </div>
   </div>
 </div>

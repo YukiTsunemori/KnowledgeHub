@@ -21,11 +21,8 @@ gem "devise"
 gem "ruby_llm", "~> 1.8"
 gem "pgvector"
 gem "neighbor"
-<<<<<<< HEAD
 gem "lexxy", "~> 0.1.4.beta" # beta版のためバージョン固定推奨
-=======
 gem "reactionview"
->>>>>>> main
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

@@ -172,6 +172,8 @@ GEM
       logger (~> 1.6)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
+    lexxy (0.1.13.beta)
+      rails (>= 8.0.2)
     lint_roller (1.1.0)
     logger (1.7.0)
     loofah (2.24.1)
@@ -446,6 +448,7 @@ DEPENDENCIES
   jsbundling-rails
   kamal
   letter_opener
+  lexxy (~> 0.1.4.beta)
   neighbor
   pg (~> 1.6)
   pgvector

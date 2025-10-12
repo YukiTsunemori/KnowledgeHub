@@ -1,24 +1,4 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## RAGベースのAIチャットアプリ
+第3回 AI Agent Hackathon with Google Cloudで提出したアプリです。
+詳細はZennの記事を見ていただけますと幸いです。
+https://zenn.dev/tsunemori/articles/7d7be4c542c8a8

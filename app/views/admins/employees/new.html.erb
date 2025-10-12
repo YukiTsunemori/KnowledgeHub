@@ -2,5 +2,8 @@
   <div class="form-box">
     <h2 class="form-title">従業員アカウント作成</h2>
     <%= render "forms", employee: @employee %>
+    <div class="d-flex justify-content-end mt-3">
+    <%= link_to "戻る", admins_root_path, class: 'btn btn-outline-secondary' %>
+    </div>
   </div>
 </div>

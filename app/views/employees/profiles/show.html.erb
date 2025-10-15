@@ -20,7 +20,7 @@
       </div>
       <div class="show-item-container">
         <div class="show-label"><%= Profile.human_attribute_name(:bio) %></div>
-        <div class="show-item"><%= @profile.bio %></div>
+        <div class="show-item"><%= @profile.bio.html_safe %></div>
       </div>
       <div class="show-actions">
         <%= link_to '編集', edit_employees_profile_path, class: "btn btn-primary" %>

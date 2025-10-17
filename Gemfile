@@ -21,6 +21,7 @@ gem "devise"
 gem "ruby_llm", "~> 1.8"
 gem "pgvector"
 gem "neighbor"
+gem "lexxy", "~> 0.1.4.beta" # beta版のためバージョン固定推奨
 gem "reactionview"
 
 group :development, :test do

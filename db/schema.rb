@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_26_073746) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_09_151803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -104,6 +104,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_26_073746) do
     t.index ["tool_call_id"], name: "index_messages_on_tool_call_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.string "nickname", null: false
+    t.date "birthday", null: false
+    t.string "living_location"
+    t.string "hometown"
+    t.text "interest"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_profiles_on_employee_id"
+  end
+
   create_table "room_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -162,6 +175,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_26_073746) do
   add_foreign_key "chats", "employees"
   add_foreign_key "facilities", "knowledge_chunks"
   add_foreign_key "messages", "chats"
+  add_foreign_key "profiles", "employees"
   add_foreign_key "room_categories", "knowledge_chunks"
   add_foreign_key "room_lists", "amenity_groups"
   add_foreign_key "room_lists", "knowledge_chunks"

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :employees, controllers: { sessions: "employees/sessions", passwords: "employees/passwords" }
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords" }
 
-  root to: redirect('/employees/sign_in')
+  root to: redirect("/employees/sign_in")
 
   namespace :admins do
     root to: "home#index"
@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 
   namespace :employees do
     root to: "configurations#index"
-    # resources :configurations, only: %i[index]
-    resources :room_categories, :amenity_groups, :room_lists, :facilities, only: %i[new create edit update destroy]
+    resource :account, only: %i[edit update]
     resources :chats, only: [ :index, :new, :create, :show ] do
       resources :messages, only: [ :create ]
     end
+    resource :profile, only: %i[show new create edit update]
+    resources :room_categories, :amenity_groups, :room_lists, :facilities, only: %i[new create edit update destroy]
   end
 end

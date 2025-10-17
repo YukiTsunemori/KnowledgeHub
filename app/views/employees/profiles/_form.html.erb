@@ -4,6 +4,11 @@
   <%= f.input :living_location %>
   <%= f.input :hometown %>
   <%= f.input :interest %>
-  <%= f.rich_text_area :bio %>
+  <%= f.input :bio %>
+  <%= f.rich_text_area :bio do %>
+    <lexxy-prompt trigger="@" name="mention" insert-editable-text>
+      <%= render partial: "employees/employees/prompt_item", collection: Employee.all, as: :employee %>
+    </lexxy-prompt>
+  <% end %>
   <%= f.button :submit, class: "btn btn-primary mt-3" %>
 <% end %>

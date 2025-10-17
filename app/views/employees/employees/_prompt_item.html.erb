@@ -1,0 +1,6 @@
+<lexxy-prompt-item search="<%= "#{employee.name} #{employee.email}" %>" sgid="<%= employee.attachable_sgid %>">
+  <template type="menu"><%= employee.name %></template>
+  <template type="editor">
+    <%= render "employees/employees/employee", employee: employee %>
+  </template>
+</lexxy-prompt-item>

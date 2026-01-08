@@ -27,5 +27,6 @@ module KnowledgeHub
     config.i18n.default_locale = :ja
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.lexxy.override_action_text_defaults = true
   end
 end

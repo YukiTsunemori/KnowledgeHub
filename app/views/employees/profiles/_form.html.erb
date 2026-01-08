@@ -1,0 +1,14 @@
+<%= simple_form_for @profile, url: employees_profile_path do |f| %>
+  <%= f.input :nickname %>
+  <%= f.input :birthday %>
+  <%= f.input :living_location %>
+  <%= f.input :hometown %>
+  <%= f.input :interest %>
+  <%= f.input :bio %>
+  <%= f.rich_text_area :bio do %>
+    <lexxy-prompt trigger="@" name="mention" insert-editable-text>
+      <%= render partial: "employees/employees/prompt_item", collection: Employee.all, as: :employee %>
+    </lexxy-prompt>
+  <% end %>
+  <%= f.button :submit, class: "btn btn-primary mt-3" %>
+<% end %>

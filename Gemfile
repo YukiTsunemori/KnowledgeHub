@@ -18,7 +18,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 gem "simple_form"
 gem "devise"
-gem "ruby_llm", "~> 1.8"
+gem "ruby_llm", "~> 1.9"
 gem "pgvector"
 gem "neighbor"
 gem "lexxy", "~> 0.1.4.beta" # beta版のためバージョン固定推奨
